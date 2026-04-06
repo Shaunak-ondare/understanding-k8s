@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: quote-app-replicaset
+  labels:
+    app: quote-app-rs
+spec:
+  # Maintain exactly 3 running pod instances of our Go app
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quote-app-rs
+  template:
+    metadata:
+      labels:
+        app: quote-app-rs
+    spec:
+      containers:
+      - name: quote-app
+        image: quote-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080

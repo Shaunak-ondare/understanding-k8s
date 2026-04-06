@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: quote-app-statefulset
+  labels:
+    app: quote-app-sts
+spec:
+  # Link StatefulSet to a Headless Service
+  serviceName: "quote-app-headless"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: quote-app-sts
+  template:
+    metadata:
+      labels:
+        app: quote-app-sts
+    spec:
+      containers:
+      - name: quote-app
+        image: quote-app:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+
+---
+# Headless service for network identity matching the StatefulSet
+apiVersion: v1
+kind: Service
+metadata:
+  name: quote-app-headless
+  labels:
+    app: quote-app-sts
+spec:
+  ports:
+  - port: 80
+    name: web
+    targetPort: 8080
+  clusterIP: None
+  selector:
+    app: quote-app-sts
