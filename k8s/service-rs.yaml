@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: quote-app-rs-service
+  labels:
+    app: quote-app-rs
+spec:
+  type: ClusterIP
+  selector:
+    app: quote-app-rs
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
