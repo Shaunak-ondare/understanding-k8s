@@ -36,23 +36,21 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - nodes/metrics
-  verbs:
-  - get
-- apiGroups:
-  - ""
-  resources:
-  - nodes/stats
-  verbs:
-  - get
-- apiGroups:
-  - ""
-  resources:
-  - nodes/nodes
+  - nodes
+  - pods
+  - namespaces
+  - configmaps
   verbs:
   - get
   - list
   - watch
+- apiGroups:
+  - ""
+  resources:
+  - nodes/metrics
+  - nodes/stats
+  verbs:
+  - get
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
