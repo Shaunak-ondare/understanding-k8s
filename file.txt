@@ -1,0 +1,6 @@
+# Add Quote App
+Add-Content -Path C:\Windows\System32\drivers\etc\hosts -Value "13.233.207.34  quote-app.local"
+
+# Add Grafana
+Add-Content -Path C:\Windows\System32\drivers\etc\hosts -Value "13.233.207.34  prometheus.local"
+Add-Content -Path C:\Windows\System32\drivers\etc\hosts -Value "13.233.207.34  grafana.local"
