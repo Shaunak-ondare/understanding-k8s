@@ -11,6 +11,9 @@ RUN go mod download
 # Copy the rest of the application source code 
 COPY . .
 
+# Tidy dependencies before building
+RUN go mod tidy
+
 # Build the Go binary securely and statically
 RUN CGO_ENABLED=0 GOOS=linux go build -o quote-app .
 
